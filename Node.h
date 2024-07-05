@@ -33,6 +33,7 @@ void NODE::set_next(NODE *t){
      nextPtr=t;
 
 }
+
 NODE::~NODE(){
      //cout<<"deleting "<<data<<endl;
 
