@@ -1,20 +1,28 @@
 #ifndef queue_h
 #define queue_h
 #include "Node.h"
+#include "Charity.h"
 class Queue {
-	NodePtr headPtr,tailPtr;
+	charityPtr headPtr,tailPtr;
 	int size;
+  string charity_name;
+  int amount;
+  int value;
+  int remaining;
 public:
-    void enqueue(int);
+    void enqueue(string, int);
     int dequeue();
+    void printcharlist();
+    bool emptylist();
+    int subtract(int, int);
     Queue();
     ~Queue();
 };
 
 
-void Queue::enqueue(int x){
-  NodePtr new_node= new NODE(x);
-if(new_node)
+void Queue::enqueue(string charity_name, int amount){
+  charityPtr new_charity= new charity(charity_name, amount);
+if(new_charity)
 { 
     /* Add head and tail for me please 
    1. connect & Change tail
@@ -22,13 +30,13 @@ if(new_node)
   3. increase size*/
   if(size == 0)
   {
-    headPtr = new_node;
-    tailPtr = new_node;
+    headPtr = new_charity;
+    tailPtr = new_charity;
   } 
   else
   {
-    tailPtr->set_next(new_node);
-    tailPtr = new_node;
+    tailPtr->set_next(new_charity);
+    tailPtr = new_charity;
   }
   size++;
 	
@@ -37,9 +45,8 @@ if(new_node)
 
 int Queue::dequeue(){
   if(headPtr!=NULL){
-     NodePtr t=headPtr;
+     charityPtr t=headPtr;
      int value= t->get_value();
-     /* Add head and tail for me please */
      if(size == 1)
      {
       headPtr = NULL;
@@ -48,7 +55,7 @@ int Queue::dequeue(){
      else headPtr = t->get_next();
 
      size--;
-     cout<<"Dequeing "<<t->get_value()<<endl;
+     //cout<<"Dequeing "<<t->get_value()<<endl;
 
      delete t;
      return value;
@@ -57,6 +64,42 @@ int Queue::dequeue(){
   return -1;
 }
 
+bool Queue::emptylist(){
+  return headPtr == NULL;
+}
+
+void Queue::printcharlist(){
+  if (size == 0)
+  {
+    cout<<"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="<<endl;
+    cout<<"Charity list is currently empty"<<endl;
+    cout<<"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="<<endl;
+  } // end if
+  else
+  {
+    cout<< "Charity list is:" << endl;
+    int k;
+    charityPtr j = headPtr;
+    cout<<"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="<<endl;
+    for(k=0; k<size; k++)
+    {
+      cout<<j->get_name()<<" With the Goal Of "<<j->get_value()<<" Yuan"<<endl;
+      j = j->get_next();
+    } //end for
+    cout<<"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="<<endl;
+    //   for (i = 0; i < size; i++) {
+    //   cout << i+1<< ". ";
+    //   currentPtr->print();
+    //    cout <<endl;
+    //    currentPtr = currentPtr->get_next();
+    // } // end for 
+  } // end else
+}
+
+int Queue::subtract(int amount, int value){
+  remaining = amount - value;
+  return remaining;
+}
 
 Queue::Queue(){
     headPtr = NULL;
@@ -68,7 +111,7 @@ Queue::~Queue(){
 
   //delete all remaining Queue (i.e. DQ all) 
 
-  cout<<"Start clearing queue..."<<endl;
+  //cout<<"Start clearing queue..."<<endl;
 
   while(size>0)
   {

@@ -24,7 +24,7 @@ LL::LL() {
 }
 
 LL::~LL() {
-  cout << "deleting all donas" << endl;
+  //cout << "deleting all donas" << endl;
   donaPtr t;
   t = hol;
   int i;
@@ -135,44 +135,46 @@ void LL::printList() {
 
     // while not the end of the list
     // while ( currentPtr != NULL ) {
-    int i;
-    for (i = 0; i < size; i++) {
+      int i;
+      for (i = 0; i < size; i++) {
+      cout << i+1<< ". ";
       currentPtr->print();
-      cout << "  ->";
-      currentPtr = currentPtr->get_next();
+       cout <<endl;
+       currentPtr = currentPtr->get_next();
     } // end while
 
-    puts(" NULL\n");
+    //puts(" NULL\n");
 
   } // end else
 }
 
-//   void LL::printListR() {
-//   donaPtr currentPtr = hol;
-//   // if list is empty
-//   if (size == 0) {
-//     cout << "List is empty." << endl;
-//   } // end if
-//   else {
-//     cout << "The reversed list is:" << endl;
+   void LL::printListR() {
+   donaPtr currentPtr = hol;
+   // if list is empty
+   if (size == 0) {
+     //cout << "List is empty." << endl;
+   } // end if
+   else {
+     //cout << "The reversed list is:" << endl;
 
-//     // while not the end of the list
-//     // while ( currentPtr != NULL ) {
-//     int i;
+     // while not the end of the list
+     // while ( currentPtr != NULL ) {
+     int i;
 
-//     // set currentPtr to the last dona
-//     for (i = 0; i < size-1; i++) {
-//       currentPtr = currentPtr->get_next();
-//     } // end while
+     // set currentPtr to the last dona
+     for (i = 0; i < size-1; i++) {
+       currentPtr = currentPtr->get_next();
+     } // end while
 
-//     for (i = 0; i < size; i++) {
-//       currentPtr->print();
-//       cout << "  ->";
-//       currentPtr = currentPtr->get_prev();
-//     } // end while
+     for (i = 0; i < 3; i++) {
+       cout<< i+1<< ".";
+       currentPtr->print();
+       cout<< endl;
+       currentPtr = currentPtr->get_prev();
+     } // end while
 
-//     puts(" NULL\n");
+     //puts(" NULL\n");
 
-//   } // end else
+   } // end else
 
-// } // end function printListR
+ } // end function printListR
