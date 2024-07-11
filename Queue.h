@@ -16,6 +16,8 @@ public:
     bool emptylist();
     int subtract(int, int);
     int next_charity();
+    int get_remainder();
+    void set_remainder(int);
     Queue();
     ~Queue();
 };
@@ -48,14 +50,12 @@ int Queue::dequeue(){
   if(headPtr!=NULL){
      charityPtr t=headPtr;
      int value1= t->get_value();
+     headPtr = t->get_next();
      if(size == 1)
      {
-      headPtr = NULL;
       tailPtr = NULL;
      }
-     else headPtr = t->get_next();
-     cout<<t->get_next()->get_value()<<endl;
-     cout<<"Hello"<<endl;
+     size--;
     //  if(size == 1){
     //   headPtr = NULL;
     //   tailPtr = NULL;
@@ -66,7 +66,14 @@ int Queue::dequeue(){
     //  }
     //  else value = t->get_value();
 
-     size--;
+     if (headPtr != NULL)
+     {
+      cout << "Next value" << headPtr -> get_value();
+     }
+     else
+     {
+      cout << "Queue is now empty." << endl;
+     }
      //cout<<"Dequeing "<<t->get_value()<<endl;
 
      delete t;
@@ -123,6 +130,13 @@ int Queue::next_charity(){
   return value;
 }
 
+int Queue::get_remainder(){
+  return remaining;
+}
+
+void Queue::set_remainder(int o){
+  remaining = o;
+}
 Queue::Queue(){
     headPtr = NULL;
     tailPtr = NULL;

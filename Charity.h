@@ -6,6 +6,7 @@ using namespace std;
 
 class charity{
     int amount;
+    int remaining;
     string charity_name;
     charity* nextPtr;
 public:
@@ -16,6 +17,7 @@ public:
     int get_value();
     string get_name();
     void print();
+    int get_remainder();
 };
 typedef charity* charityPtr;
 
@@ -46,6 +48,9 @@ int charity::get_value(){
 
 }
 
+int charity::get_remainder(){
+  return remaining;
+}
 
 void charity::set_next(charityPtr t){
      nextPtr=t;

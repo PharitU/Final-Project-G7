@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+#include "Charity.h"
 #include "Queue.h"
 #include "ll.h"
 #include "string.h"
@@ -27,9 +28,10 @@ int main(void) {
 
     string name;
     string charity_name;
-    int value = 0;
-    int amount = 0;
-    int remaining = 0;
+    int value = 0; // Money from Donators
+    int amount = 0; // Money required for Charity
+    int remaining = 0; // Money remaining from amount - value
+    int leftovers = 0; // Money leftover that went over the charity
 
     while(choice != 5)
     {
@@ -79,7 +81,7 @@ int main(void) {
                         {
                             remaining = q.subtract(amount, value);
                             cout<<"Eljha"<<endl;
-                            if(remaining == 0)
+                            if(remaining == 0 || remaining < 0) 
                             {
                                 q.dequeue();
                                 //amount = q.next_charity();
@@ -90,6 +92,7 @@ int main(void) {
                                 cout<<amount<<" "<<remaining<<"<-->"<<value<<endl;
                                 cout<<"Charity "<<charity_name<<" now needs "<<remaining<<" more Yuan"<<endl;
                                 amount = remaining;
+                                q.set_remainder(remaining);
                             }
                         }
                         else
