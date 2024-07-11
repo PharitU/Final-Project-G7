@@ -15,6 +15,7 @@ public:
     void printcharlist();
     bool emptylist();
     int subtract(int, int);
+    int next_charity();
     Queue();
     ~Queue();
 };
@@ -38,7 +39,7 @@ if(new_charity)
     tailPtr->set_next(new_charity);
     tailPtr = new_charity;
   }
-  size++;
+  size++; //tommy changed from size++
 	
  }
 }
@@ -46,7 +47,7 @@ if(new_charity)
 int Queue::dequeue(){
   if(headPtr!=NULL){
      charityPtr t=headPtr;
-     int value= t->get_value();
+     int value1= t->get_value();
      if(size == 1)
      {
       headPtr = NULL;
@@ -54,17 +55,22 @@ int Queue::dequeue(){
      }
      else headPtr = t->get_next();
      cout<<t->get_next()->get_value()<<endl;
-     if(size > 0)
-     {
-      value = t->get_next()->get_value();
-     }
-     else value = t->get_value();
+     cout<<"Hello"<<endl;
+    //  if(size == 1){
+    //   headPtr = NULL;
+    //   tailPtr = NULL;
+    //  }
+    //  if(size > 0)
+    //  {
+    //   value = t->get_next()->get_value();
+    //  }
+    //  else value = t->get_value();
 
      size--;
      //cout<<"Dequeing "<<t->get_value()<<endl;
 
      delete t;
-     return value;
+     return value1;
   }
   cout<<"Empty queue";
   return -1;
@@ -105,6 +111,16 @@ void Queue::printcharlist(){
 int Queue::subtract(int amount, int value){
   remaining = amount - value;
   return remaining;
+}
+
+int Queue::next_charity(){
+  int value;
+  charityPtr t=headPtr;
+  if (size > 0)
+  {
+    value = t->get_next()->get_value();
+  }
+  return value;
 }
 
 Queue::Queue(){

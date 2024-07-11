@@ -30,16 +30,16 @@ int main(void) {
     int value = 0;
     int amount = 0;
     int remaining = 0;
-    int remainings = 0;
 
     while(choice != 5)
     {
-        cout<< endl<< "Choose 1-5"<< endl;
-        cout<< "1.Enter Donator"<< endl;
-        cout<< "2.Display Top 3 Donator"<< endl;
-        cout<< "3.Enter Charity"<< endl;
-        cout<< "4.Display All Charity List"<< endl;
-        cout<< "5.Stop"<< endl;
+        cout<<"=-=-=-=-=-=-=-=-=-=-=-=-=-=-="<<endl;
+        cout<<"=-=-=-= Choose 1-5 =-=-=-=-=-"<< endl;
+        cout<< "      1.Enter Donator"<< endl;
+        cout<< "   2.Display Top 3 Donator"<< endl;
+        cout<< "      3.Enter Charity"<< endl;
+        cout<< " 4.Display All Charity List"<< endl;
+        cout<< "        5.Stop"<< endl;
         cin>> choice;
 
         if (cin.fail()) //False input
@@ -78,21 +78,49 @@ int main(void) {
                         if(remaining == 0)
                         {
                             remaining = q.subtract(amount, value);
+                            cout<<"Eljha"<<endl;
+                            if(remaining == 0)
+                            {
+                                q.dequeue();
+                                //amount = q.next_charity();
+                                cout<<"Eieie"<<endl;
+                            }
+                            else
+                            {
+                                cout<<amount<<" "<<remaining<<"<-->"<<value<<endl;
+                                cout<<"Charity "<<charity_name<<" now needs "<<remaining<<" more Yuan"<<endl;
+                                amount = remaining;
+                            }
                         }
                         else
                         {
-                            amount = remaining;
                             remaining = q.subtract(amount, value);
+                             if(remaining <= 0) //tom change from rem == 0
+                            {
+                                cout<<"Eieiefff"<<endl;
+                                q.dequeue();
+                                amount = q.next_charity();
+                                //cout<<amount<<endl;
+                                
+                            }
+                            else
+                            {
+                                cout<<amount<<" "<<remaining<<" ->"<<value<<endl;
+                                cout<<"Charity "<<charity_name<<" now needs "<<remaining<<" more Yuan"<<endl;
+                                amount = remaining;
+                            }
                         } // end if
-                        if (remaining <= 0){
-                                amount = q.dequeue();
-                                remaining = 0;
-                                cout<<amount<<" "<<value<<" "<<remaining<<endl;
-                                //~queue();
-                        } // end if
-                        else{
-                            cout<<"Charity "<<charity_name<<" now needs "<<remaining<<" more Yuan"<<endl;
-                        } // end else
+                        // if (remaining <= 0){
+                        //         remaining = q.subtract(amount, value);
+                        //         q.dequeue();
+                        //         amount = q.next_charity();
+                        //         // remaining = 0;
+                        //         cout<<amount<<" "<<value<<" "<<remaining<<endl;
+                        //         //~queue();
+                        // } // end if
+                        // else{
+                        //     cout<<"Charity "<<charity_name<<" now needs "<<remaining<<" more Yuan"<<endl;
+                        // } // end else
                     }
                 break;        
                 } // end big else
