@@ -166,12 +166,21 @@ void LL::printList() {
        currentPtr = currentPtr->get_next();
      } // end while
 
-     for (i = 0; i < 3; i++) {
+    int topNum;
+
+     if(size<3) //Prevent coredump if size < 3
+      topNum = size;
+     else
+      topNum = 3; //End coredump preventation
+
+
+     for (i = 0; i < topNum; i++) {
        cout<< i+1<< ".";
        currentPtr->print();
        cout<< endl;
        currentPtr = currentPtr->get_prev();
-     } // end while
+      } // end while
+
 
      //puts(" NULL\n");
 

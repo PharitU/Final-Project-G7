@@ -6,7 +6,7 @@ class Queue {
 	charityPtr headPtr,tailPtr;
 	int size;
   string charity_name;
-  int amount;
+  int amount = 0;
   int value;
   int remaining;
 public:
@@ -14,10 +14,11 @@ public:
     int dequeue();
     void printcharlist();
     bool emptylist();
-    int subtract(int, int);
+    int subtract(int);
     int next_charity();
-    int get_remainder();
+    int get_amount();
     void set_remainder(int);
+    string get_firstname();
     Queue();
     ~Queue();
 };
@@ -49,7 +50,7 @@ if(new_charity)
 int Queue::dequeue(){
   if(headPtr!=NULL){
      charityPtr t=headPtr;
-     int value1= t->get_value();
+     int amount= t->get_amount();
      headPtr = t->get_next();
      if(size == 1)
      {
@@ -62,25 +63,29 @@ int Queue::dequeue(){
     //  }
     //  if(size > 0)
     //  {
-    //   value = t->get_next()->get_value();
+    //   amount = t->get_next()->get_amount();
     //  }
-    //  else value = t->get_value();
+    //  else amount = t->get_amount();
 
      if (headPtr != NULL)
      {
-      cout << "Next value" << headPtr -> get_value();
+      cout << "Next Charity Target " << headPtr -> get_amount()<<endl;
      }
      else
      {
-      cout << "Queue is now empty." << endl;
+      cout << "All charities completed " << endl;
      }
-     //cout<<"Dequeing "<<t->get_value()<<endl;
+     //cout<<"Dequeing "<<t->get_amount()<<endl;
 
      delete t;
-     return value1;
+     return amount;
   }
   cout<<"Empty queue";
   return -1;
+}
+
+string Queue::get_firstname(){
+  return headPtr->get_name();
 }
 
 bool Queue::emptylist(){
@@ -96,13 +101,14 @@ void Queue::printcharlist(){
   } // end if
   else
   {
+    cout<<endl;
     cout<< "Charity list is:" << endl;
     int k;
     charityPtr j = headPtr;
     cout<<"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="<<endl;
     for(k=0; k<size; k++)
     {
-      cout<<j->get_name()<<" With the Goal Of "<<j->get_value()<<" Yuan"<<endl;
+      cout<<j->get_name()<<" With the Goal Of "<<j->get_amount()<<" Baht"<<endl;
       j = j->get_next();
     } //end for
     cout<<"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="<<endl;
@@ -120,30 +126,27 @@ void Queue::printcharlist(){
 //   return remaining;
 // }
 
-int Queue::subtract(int amount, int value){
+int Queue::subtract(int value){
   charityPtr x = headPtr;
-  remaining = amount - value;
-  x->set_value(remaining);
+  remaining = x->get_amount() - value;
+  x->set_amount(remaining);
   return remaining;
 }
 
 int Queue::next_charity(){
-  int value;
+  int amount;
   charityPtr t=headPtr;
   if (size > 0)
   {
-    value = t->get_next()->get_value();
+    amount = t->get_next()->get_amount();
   }
-  return value;
+  return amount;
 }
 
-int Queue::get_remainder(){
-  return remaining;
+int Queue::get_amount(){
+  return amount;
 }
 
-void Queue::set_remainder(int o){
-  remaining = o;
-}
 Queue::Queue(){
     headPtr = NULL;
     tailPtr = NULL;

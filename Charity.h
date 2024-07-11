@@ -14,11 +14,11 @@ public:
     ~charity();
     void set_next(charity*);
     charity* get_next();
-    int get_value();
+    int get_amount();
     string get_name();
     void print();
     int get_remainder();
-    void set_value(int);
+    void set_amount(int);
 };
 typedef charity* charityPtr;
 
@@ -29,7 +29,7 @@ charity::charity(string n, int x){
     nextPtr = NULL;
     cout<<endl;
     cout<<"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="<<endl;
-    cout<<"Created Charity "<< charity_name<< " With the goal of "<< amount <<" Yuan" << endl;
+    cout<<"Created Charity "<< charity_name<< " With the goal of "<< amount <<" Baht" << endl;
     cout<<"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="<<endl;
     //pPtr =NULL; not using doubly
 }
@@ -44,11 +44,11 @@ string charity::get_name()
 }
 
 
-void charity::set_value(int n){
+void charity::set_amount(int n){
      amount=n;
 }
 
-int charity::get_value(){
+int charity::get_amount(){
     return amount;
 }
 

@@ -1,4 +1,4 @@
 argument: main.cpp
-	g++ main.cpp -o Q
-run: Q
-	./Q
+	g++ main.cpp -o test
+run: test
+	./test

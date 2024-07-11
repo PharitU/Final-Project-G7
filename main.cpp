@@ -32,6 +32,7 @@ int main(void) {
     int amount = 0; // Money required for Charity
     int remaining = 0; // Money remaining from amount - value
     int leftovers = 0; // Money leftover that went over the charity
+    int random = 0; //variable for leftover :D
 
     while(choice != 5)
     {
@@ -77,45 +78,54 @@ int main(void) {
                         cin.ignore(256, '\n');
                     } // end if
                     donaList.insert(name, value);
-                    if (value != 0 && amount != 0) 
+                    if (value != 0 && amount != 0) //Check if there's money from donors and amount needed for charity
                     {
-                        if(remaining == 0)
+                        if(remaining == 0) //First-time :D
                         {
-                            remaining = q.subtract(amount, value);
-                            cout<<"Eljha"<<endl;
-                            if(remaining == 0 || remaining < 0) 
+                            remaining = q.subtract(value);
+                            if(remaining == 0 || remaining < 0) //Remaining = remaining of amount 
                             {
                                 q.dequeue();
-                                
+                                if(remaining < 0) //ถ้า remaining go below zero use it as funds for next charity (leftovers)
+                                {
+                                    leftovers = remaining * -1;
+                                    random = q.subtract(leftovers);
+                                    if(q.get_amount() == 0)
+                                    {
+                                        q.dequeue();
+                                    }
+                                }
                                 //amount = q.next_charity();
-                                cout<<"Eieie"<<endl;
-                            }
-                            else
+                            } 
+                            else //remaining != 0 will tell how much more need
                             {
-                                cout<<amount<<" "<<remaining<<"<-->"<<value<<endl;
-                                cout<<"Charity "<<charity_name<<" now needs "<<remaining<<" more Yuan"<<endl;
+                                cout<<"Charity "<<q.get_firstname()<<" now needs "<<remaining<<" more Baht"<<endl;
                                 amount = remaining;
-                                q.set_remainder(remaining);
+                                //q.set_remainder(remaining);
                             }
                         }
-                        else
+                        else //I got lost half way and if doesn't work anymore
                         {
-                            remaining = q.subtract(amount, value);
-                             if(remaining <= 0) //tom change from rem == 0
+                            remaining = q.subtract(value);
+                             if(remaining <= 0) //tom change from rem == 0 // 
                             {
-                                cout<<"Eieiefff"<<endl;
                                 q.dequeue();
-                                amount = q.next_charity();
+                                amount = q.get_amount();
+                                cout<<q.get_amount()<<endl;
+                                if(remaining < 0) //ถ้า remaining go below zero use it as funds for next charity (leftovers)
+                                {
+                                    leftovers = remaining * -1;
+                                    random = q.subtract(leftovers);
+                                }
                                 //cout<<amount<<endl;
                                 
                             }
                             else
                             {
-                                cout<<amount<<" "<<remaining<<" ->"<<value<<endl;
-                                cout<<"Charity "<<charity_name<<" now needs "<<remaining<<" more Yuan"<<endl;
+                                cout<<"Charity "<<q.get_firstname()<<" now needs "<<remaining<<" more Baht"<<endl;
                                 amount = remaining;
                             }
-                        } // end if
+                        } // end if // all this don't work don't know why just gonna comment it, it wont affect much 
                         // if (remaining <= 0){
                         //         remaining = q.subtract(amount, value);
                         //         q.dequeue();
@@ -128,7 +138,7 @@ int main(void) {
                         //     cout<<"Charity "<<charity_name<<" now needs "<<remaining<<" more Yuan"<<endl;
                         // } // end else
                     }
-                break;        
+                break;  // case 1 like 80 lines ยาวเกินครับพี่ชาย    
                 } // end big else
             case 2:
                 if (donaList.isEmpty())
