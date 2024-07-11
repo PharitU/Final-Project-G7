@@ -18,6 +18,7 @@ public:
     string get_name();
     void print();
     int get_remainder();
+    void set_value(int);
 };
 typedef charity* charityPtr;
 
@@ -35,7 +36,6 @@ charity::charity(string n, int x){
 
 charityPtr charity::get_next(){
     return nextPtr;
-
 }
 
 string charity::get_name()
@@ -43,9 +43,13 @@ string charity::get_name()
     return charity_name;
 }
 
+
+void charity::set_value(int n){
+     amount=n;
+}
+
 int charity::get_value(){
     return amount;
-
 }
 
 int charity::get_remainder(){

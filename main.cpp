@@ -35,13 +35,15 @@ int main(void) {
 
     while(choice != 5)
     {
+        cout<<endl;
         cout<<"=-=-=-=-=-=-=-=-=-=-=-=-=-=-="<<endl;
         cout<<"=-=-=-= Choose 1-5 =-=-=-=-=-"<< endl;
-        cout<< "      1.Enter Donator"<< endl;
-        cout<< "   2.Display Top 3 Donator"<< endl;
-        cout<< "      3.Enter Charity"<< endl;
-        cout<< " 4.Display All Charity List"<< endl;
-        cout<< "        5.Stop"<< endl;
+        cout<< "1.Enter Donator"<< endl;
+        cout<< "2.Display Top 3 Donator"<< endl;
+        cout<< "3.Enter Charity"<< endl;
+        cout<< "4.Display All Charity List"<< endl;
+        cout<< "5.Stop"<< endl;
+        cout<<"=-=-=-=-=-=-=-=-=-=-=-=-=-=-="<<endl;
         cin>> choice;
 
         if (cin.fail()) //False input
@@ -84,6 +86,7 @@ int main(void) {
                             if(remaining == 0 || remaining < 0) 
                             {
                                 q.dequeue();
+                                
                                 //amount = q.next_charity();
                                 cout<<"Eieie"<<endl;
                             }

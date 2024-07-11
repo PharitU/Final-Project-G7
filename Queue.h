@@ -115,8 +115,15 @@ void Queue::printcharlist(){
   } // end else
 }
 
+// int Queue::subtract(int amount, int value){
+//   remaining = amount - value;
+//   return remaining;
+// }
+
 int Queue::subtract(int amount, int value){
+  charityPtr x = headPtr;
   remaining = amount - value;
+  x->set_value(remaining);
   return remaining;
 }
 
