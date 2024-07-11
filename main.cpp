@@ -30,6 +30,7 @@ int main(void) {
     int value = 0;
     int amount = 0;
     int remaining = 0;
+    int remainings = 0;
 
     while(choice != 5)
     {
@@ -74,15 +75,25 @@ int main(void) {
                     donaList.insert(name, value);
                     if (value != 0 && amount != 0) 
                     {
-                        remaining = q.subtract(amount, value);
-                        if (remaining >= 0){
-                            q.dequeue();
-                            //~queue();
+                        if(remaining == 0)
+                        {
+                            remaining = q.subtract(amount, value);
+                        }
+                        else
+                        {
+                            amount = remaining;
+                            remaining = q.subtract(amount, value);
+                        } // end if
+                        if (remaining <= 0){
+                                amount = q.dequeue();
+                                remaining = 0;
+                                cout<<amount<<" "<<value<<" "<<remaining<<endl;
+                                //~queue();
                         } // end if
                         else{
                             cout<<"Charity "<<charity_name<<" now needs "<<remaining<<" more Yuan"<<endl;
                         } // end else
-                    } // end if
+                    }
                 break;        
                 } // end big else
             case 2:

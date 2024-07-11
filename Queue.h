@@ -53,6 +53,12 @@ int Queue::dequeue(){
       tailPtr = NULL;
      }
      else headPtr = t->get_next();
+     cout<<t->get_next()->get_value()<<endl;
+     if(size > 0)
+     {
+      value = t->get_next()->get_value();
+     }
+     else value = t->get_value();
 
      size--;
      //cout<<"Dequeing "<<t->get_value()<<endl;
